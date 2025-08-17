@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import numpy as np
+from fastapi.middleware.cors import CORSMiddleware
 #from .model import load_model, make_prediction
 
 # Load the trained model
@@ -11,6 +12,14 @@ app = FastAPI(
     title="Diabetes Prediction API by Razibul", 
     description="This API predicts whether a patient has diabetes or not based on various input features.",
     version="1.0.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],          # or specify your Streamlit origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Load pre-trained model (Logistic Regression, Random Forest, etc.)
