@@ -15,14 +15,14 @@ st.set_page_config(
 st.sidebar.header("⚙️ API Settings")
 api_base = st.sidebar.text_input(
     "FastAPI base URL",
-    value="https://ai-diabetesprediction.onrender.com/predict",
+    value="https://ai-diabetesprediction.onrender.com",
     help="Your FastAPI server root. Example: https://your-app.onrender.com",
 )
 
 colA, colB = st.sidebar.columns(2)
 if colA.button("Check API Health"):
     try:
-        r = requests.get(f"{api_base}/health", timeout=8)
+        r = requests.get(f"{api_base}/health", timeout=80)
         if r.ok:
             st.sidebar.success(f"Health OK: {r.json()}")
         else:
@@ -38,7 +38,7 @@ st.sidebar.caption(
 # -----------------------------
 # Main: App Title
 # -----------------------------
-st.title(" Diabetes Prediction (API Client)")
+st.title(" Diabetes Prediction (API Client)-by Razib")
 st.write(
     "This app collects patient metrics and sends them to your **FastAPI** endpoint to get a prediction."
 )
